@@ -166,8 +166,7 @@ def a(slug, label, cls="", current=None):
 
 def header(current):
     sec = section_of(current) if current not in ("home",) else None
-    home_cls = ' class="is-here"' if current == "home" else ""
-    lis = [f"<li{home_cls}>{a('home', 'Home', current=current)}</li>"]
+    lis = []
     for slug, label, kids in MENU:
         here = ' class="is-here"' if slug == sec or slug == current else ""
         if not kids:
@@ -195,7 +194,7 @@ def header(current):
 
 <header class="nav" id="top">
   <div class="wrap">
-    <a class="logo" href="index.html" aria-label="Iowa PTA home"><img src="images/logo.png" alt="Iowa PTA, every child. one voice."></a>
+    <a class="logo" href="index.html" aria-label="Iowa PTA home"><img src="images/logo.svg" alt="Iowa PTA, every child. one voice."></a>
     <button class="burger" id="burger" aria-label="Toggle menu" aria-expanded="false" aria-controls="menu">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
     </button>
@@ -216,7 +215,7 @@ def footer():
   <div class="wrap">
     <div class="foot">
       <div>
-        <div class="chip"><img src="images/logo.png" alt="Iowa PTA, every child. one voice." loading="lazy"></div>
+        <div class="chip"><img src="images/logo.svg" alt="Iowa PTA, every child. one voice." loading="lazy"></div>
         <address>390 17th St SE<br>Cedar Rapids, IA 52403<br><a href="tel:3199815210">319-981-5210</a><br><a href="mailto:info@iowapta.org">info@iowapta.org</a></address>
         <a class="btn btn-gold btn-sm" href="{EXT["donate"]}" target="_blank" rel="noopener">Donate</a>
       </div>
