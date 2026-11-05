@@ -40,7 +40,7 @@ The arts—and the National PTA Reflections program—support student success an
 
 [Register your PTA for Reflections](https://www.surveymonkey.com/r/21-22ReflectionsRegistration)
 
-- - - - - Iowa PTA State Reflections Forms/Guides for Local PTA Units - - - - -
+### Iowa PTA State Reflections Forms/Guides for Local PTA Units
 
 - [- Student Entry Information and Rules](https://iowapta.org/wp-content/uploads/2022/11/IA-student-packet-template_reflections_20-21.pdf)
 - [- Promotional Ideas/Flyers](https://www.pta.org/home/programs/reflections/startyourprogram)
@@ -49,7 +49,7 @@ The arts—and the National PTA Reflections program—support student success an
 
 Important NOTE: All local unit leaders and participating students are responsible for reading and understanding the Rules that apply to their artwork.
 
-***** Important Dates *****
+### Important Dates
 
 – State Reflections entries will be accepted through ***Monday, January 31, 2022* .** All local PTA entries that qualify for state judging **(4 per art category per grade division per PTA)** should be entered online, or mailed to Liz Mink, Iowa PTA Reflections Chair, 1239 2nd Ave S, Clinton, IA 52732 to be received by Monday, January 31, 2022. (See special COVID alternatives if needed).
 

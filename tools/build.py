@@ -15,6 +15,7 @@ import markdown
 from bs4 import BeautifulSoup, NavigableString, Tag
 
 sys.path.insert(0, os.path.dirname(__file__))
+import design  # noqa: E402
 from sitedata import MENU, TODO, EXTRA, EXT, LIVE_SLUG, SECTION_IMG, PAGE_IMG  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -269,7 +270,7 @@ def local_link(url, known):
     return url if u.netloc else "https://iowapta.org/" + path
 
 
-def render_body(md, known):
+def render_body(md, known, slug=''):
     md = re.sub(r"^# [^\n]*\n?", "", md.strip(), count=1)          # H1 lives in the hero
     def embed(m):
         kind = m.group(1)
@@ -296,7 +297,7 @@ def render_body(md, known):
             img["src"] = local_link(img.get("src", ""), known)
     for t in soup.find_all("table"):
         t.wrap(soup.new_tag("div", attrs={"class": "table-wrap"}))
-    return str(soup)
+    return design.enhance(str(soup), slug)
 
 
 def h1_of(md, fallback):
@@ -361,7 +362,7 @@ def page(slug, p, known):
     sec = section_of(slug)
     eyebrow = LABEL.get(sec) if sec and sec != slug else ("Iowa PTA Updates" if PARENT.get(slug) == "updates" else "Iowa PTA")
     img = PAGE_IMG.get(slug) or SECTION_IMG.get(sec) or SECTION_IMG.get(PARENT.get(slug)) or SECTION_IMG[None]
-    body = render_body(p["md"], known)
+    body = render_body(p["md"], known, slug)
     empty = not BeautifulSoup(body, "html.parser").get_text(strip=True) and "<img" not in body
     if empty:
         body = ""

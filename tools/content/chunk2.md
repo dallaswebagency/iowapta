@@ -306,7 +306,7 @@ Can’t find a form you need? Let us know and we will add it to this list. Quest
 **Running Your PTA:**
 
 - [- Unit Registration Form](https://www.memberplanet.com/s/iowapta/2016-2017officersrostersubmissionform_1)
-- [- Local Unit Bylaws Template](#)
+- [- Local Unit Bylaws Template](https://iowapta.org/wp-content/uploads/2022/11/Iowa_PTA_Bylaws_Template_2019-2020.docx)
 - [- Bylaws Submission Form](https://iowapta.org/wp-content/uploads/2022/11/Bylaws_Submission_Form_.docx)
 - [- Presentation Request Form](https://iowapta.org/wp-content/uploads/2022/11/Presentation_Request_Form.docx)
 - [- Sample Policy and Procedure Book](https://iowapta.org/wp-content/uploads/2022/11/Sample_Local_Unit_Policy_and_Procedure.doc)
