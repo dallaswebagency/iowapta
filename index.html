@@ -7,335 +7,34 @@
 <link rel="preconnect" href="https://fonts.googleapis.com/">
 <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,600;0,700;0,800;0,900;1,800;1,900&family=Newsreader:ital,wght@1,400&family=Public+Sans:wght@400;600;700&display=swap" rel="stylesheet">
-<style>
-:root{
-  --navy:#191840;
-  --navy-deep:#0f0e2b;
-  --navy-soft:#2b2a63;
-  --gold:#F4B63F;
-  --gold-ink:#7a560b;
-  --tint:#F2F2F8;
-  --line:#d9d9e8;
-  --muted:#4b4a6b;
-  --max:1200px;
-  --pad:clamp(20px,5vw,48px);
-}
-:root{--bgA:url("images/bgA.jpg");--bgB:url("images/bgB.jpg");--bgC:url("images/bgC.jpg");--bgD:url("images/bgD.jpg");--bgE:url("images/bgE.jpg");--bgF:url("images/bgF.jpg");--bgG:url("images/bgG.jpg");--bgH:url("images/bgH.jpg");--bgI:url("images/bgI.jpg");--bg1:url("images/bg1.jpg");--bg2:url("images/bg2.jpg");--bg3:url("images/bg3.jpg");--bg4:url("images/bg4.jpg");--bg5:url("images/bg5.jpg");--bg6:url("images/bg6.jpg");--bg7:url("images/bg7.jpg");--bg8:url("images/bg8.jpg");--bg9:url("images/bg9.jpg");--bg10:url("images/bg10.jpg");}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:90px}
-body{margin:0;font-family:"Public Sans",system-ui,sans-serif;color:var(--navy);background:#fff;line-height:1.6;-webkit-font-smoothing:antialiased}
-img{max-width:100%;display:block}
-a{color:inherit;text-decoration:none}
-a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
-.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
-h1,h2,h3{font-family:Archivo,sans-serif;margin:0;line-height:1.05}
-.eyebrow{font-family:Archivo,sans-serif;font-weight:700;font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-ink)}
-.on-dark .eyebrow,.hero .eyebrow{color:var(--gold)}
-h2{font-weight:800;font-size:clamp(32px,4.4vw,48px);letter-spacing:-.01em}
-.sec-head{display:flex;flex-direction:column;gap:14px;margin-bottom:40px}
-section{padding:clamp(64px,9vw,96px) 0}
-
-/* buttons */
-.btn{display:inline-flex;align-items:center;justify-content:center;min-height:56px;padding:0 32px;border-radius:4px;font-family:Archivo,sans-serif;font-weight:800;font-size:18px;border:2px solid transparent;transition:transform .15s ease,background .15s ease,color .15s ease}
-.btn:hover{transform:translateY(-2px)}
-.btn-gold{background:var(--gold);color:var(--navy)}
-.btn-gold:hover{background:#ffc75a}
-.btn-navy{background:var(--navy);color:#fff}
-.btn-navy:hover{background:var(--navy-soft)}
-.btn-line-w{border-color:#fff;color:#fff;font-weight:700;font-size:17px}
-.btn-line-w:hover{background:#fff;color:var(--navy)}
-.btn-line-n{border-color:var(--navy);color:var(--navy);font-weight:700;font-size:17px}
-.btn-line-n:hover{background:var(--navy);color:#fff}
-.btn-sm{min-height:44px;padding:0 20px;font-size:15px;font-weight:700}
-
-/* utility bar */
-.util{background:var(--navy-deep);color:#fff;font-size:14px}
-.util .wrap{display:flex;justify-content:space-between;align-items:center;gap:20px;min-height:44px;flex-wrap:wrap}
-.util .group{display:flex;gap:28px;flex-wrap:wrap}
-.util a:hover{color:var(--gold)}
-
-/* nav */
-.nav{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid var(--line)}
-.nav .wrap{display:flex;align-items:center;justify-content:space-between;min-height:96px;gap:24px}
-.nav .logo img{height:72px;width:auto}
-.menu{display:flex;align-items:center;gap:32px;font-family:Archivo,sans-serif;font-weight:600;font-size:16px}
-.menu a:not(.join):hover{color:var(--gold-ink)}
-.menu .join{background:var(--gold);padding:14px 26px;border-radius:4px;font-weight:800;letter-spacing:.02em}
-.menu .join:hover{background:#ffc75a}
-.burger{display:none;background:none;border:2px solid var(--navy);border-radius:4px;width:48px;height:48px;padding:0;cursor:pointer;color:var(--navy)}
-
-/* hero */
-.hero{position:relative;overflow:hidden;background:var(--navy);color:#fff;padding:clamp(56px,8vw,96px) 0}
-.hero .ghost{position:absolute;right:-2%;bottom:-18%;font-family:Archivo,sans-serif;font-weight:900;font-style:italic;font-size:clamp(260px,44vw,620px);line-height:1;letter-spacing:-.04em;color:rgba(255,255,255,.05);pointer-events:none;user-select:none}
-.hero .wrap{position:relative;display:grid;grid-template-columns:1.05fr .95fr;gap:80px;align-items:center}
-.hero h1{font-weight:800;font-style:italic;font-size:clamp(48px,7vw,84px);line-height:.98;letter-spacing:-.02em;margin:24px 0 28px}
-.hero h1 span{color:var(--gold)}
-.hero p{font-size:20px;line-height:1.6;max-width:560px;color:#e6e6f5;margin:0 0 32px}
-.hero .cta{display:flex;gap:16px;flex-wrap:wrap}
-.hero-media{position:relative}
-.hero-media::before{content:"";position:absolute;inset:28px -28px -28px 28px;background:var(--gold)}
-.hero-media .frame{position:relative;background:#fff;aspect-ratio:12/11;overflow:hidden}
-.hero-media img{width:100%;height:100%;object-fit:cover}
-
-/* about */
-.about .wrap{display:grid;grid-template-columns:1fr 1fr;gap:96px;align-items:center}
-.about h2{margin:14px 0 22px}
-.about p{font-size:18px;color:var(--muted);margin:0 0 20px;line-height:1.65}
-.chips{display:flex;flex-wrap:wrap;gap:12px;margin-top:10px}
-.stamp{margin:0 0 32px;background:var(--navy);border-radius:6px;overflow:hidden;box-shadow:0 24px 40px -24px rgba(25,24,64,.55)}
-.stamp img{width:100%;height:auto}
-.stats{border-top:4px solid var(--gold)}
-.stat{display:flex;align-items:baseline;justify-content:space-between;gap:24px;padding:22px 0;border-bottom:1px solid var(--line)}
-.stat b{font-family:Archivo,sans-serif;font-weight:800;font-style:italic;font-size:clamp(40px,5vw,56px);line-height:1}
-.stat b.sm{font-size:clamp(32px,4vw,40px)}
-.stat span{font-size:17px;color:var(--muted);text-align:right}
-
-/* running */
-.running{background:var(--tint)}
-.todo{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
-.todo a{position:relative;display:flex;flex-direction:column;gap:14px;min-height:280px;padding:28px 28px 72px;background:#fff;border:1px solid var(--line);border-radius:6px;transition:transform .15s ease,box-shadow .15s ease}
-.todo a:hover{transform:translateY(-4px);box-shadow:0 14px 30px -16px rgba(25,24,64,.4)}
-.todo a.gold{background:var(--gold);border-color:var(--gold)}
-.todo .tag{font-family:Archivo,sans-serif;font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-ink)}
-.todo a.gold .tag{color:var(--navy)}
-.todo .t{font-family:Archivo,sans-serif;font-weight:800;font-size:26px;line-height:1.15}
-.todo .s{font-size:16px;font-weight:600}
-.todo svg{position:absolute;left:28px;bottom:26px}
-.tools-split{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:24px;align-items:stretch}
-.tools-split .tools{grid-template-columns:repeat(2,1fr);align-content:start}
-.tools-img{min-height:300px;border-radius:6px;overflow:hidden;background:var(--navy-soft)}
-.tools-img img{width:100%;height:100%;object-fit:cover}
-.running h3{font-weight:800;font-size:28px;margin:64px 0 20px}
-.tools{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-.tools a{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:60px;padding:10px 20px;background:#fff;border:1px solid var(--line);border-radius:6px;font-weight:600;font-size:16px;transition:border-color .15s ease}
-.tools a:hover{border-color:var(--navy)}
-.tools svg{color:var(--gold-ink);flex:none}
-
-/* programs */
-.programs{position:relative;overflow:hidden;background:var(--navy)}
-.programs .sec-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 45%}
-.programs .sec-tint{position:absolute;inset:0;background:linear-gradient(180deg,rgba(25,24,64,.93) 0%,rgba(25,24,64,.84) 55%,rgba(25,24,64,.90) 100%)}
-.programs .wrap{position:relative}
-.programs h2{color:#fff}
-.programs .prog{box-shadow:0 20px 32px -22px rgba(0,0,0,.65);border-color:transparent}
-.programs .prog.all{border-color:var(--gold)}
-.progs{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
-.prog{position:relative;display:flex;flex-direction:column;gap:10px;min-height:232px;padding:24px 24px 60px;background:#fff;border:1px solid var(--line);border-top:4px solid var(--navy);border-radius:6px;transition:transform .15s ease,box-shadow .15s ease}
-.prog:hover{transform:translateY(-4px);box-shadow:0 14px 30px -16px rgba(25,24,64,.4)}
-.prog .tag{font-family:Archivo,sans-serif;font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-ink)}
-.prog .n{font-family:Archivo,sans-serif;font-weight:800;font-size:23px;line-height:1.15}
-.prog .d{font-size:15px;line-height:1.45;color:var(--muted)}
-.prog svg{position:absolute;right:22px;bottom:20px}
-.prog.all{overflow:hidden;background:var(--navy);color:#fff;border-color:var(--navy);justify-content:flex-end;padding:24px}
-.prog.all img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.prog.all .shade{position:absolute;inset:0;background:linear-gradient(to top,rgba(25,24,64,.92) 18%,rgba(25,24,64,.25) 70%)}
-.prog.all .n{position:relative;font-style:italic;font-size:26px;color:#fff;padding-right:34px}
-.prog.all svg{right:22px;bottom:24px;color:var(--gold)}
-
-
-/* photo cards */
-.todo a,.prog:not(.all){position:relative;overflow:hidden;isolation:isolate;color:#fff}
-.todo a::before,.prog:not(.all)::before{content:"";position:absolute;inset:0;z-index:-2;background:var(--bg) var(--pos,center)/cover no-repeat;transition:transform .6s ease}
-.todo a::after,.prog:not(.all)::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(to bottom,rgba(25,24,64,.86) 0%,rgba(25,24,64,.52) 58%,rgba(25,24,64,.82) 100%);transition:opacity .3s ease}
-.todo a:hover::before,.prog:not(.all):hover::before{transform:scale(1.07)}
-.todo a:hover::after,.prog:not(.all):hover::after{opacity:.82}
-.todo a,.todo a:hover{border-color:transparent;background:var(--navy)}
-.todo .tag,.prog .tag{color:var(--gold)}
-.todo .t,.prog .n{color:#fff}
-.todo .s,.prog .d{color:#e6e6f5}
-.todo svg,.prog svg{color:var(--gold)}
-.todo a.gold{color:var(--navy);background:var(--gold)}
-.todo a.gold::after{background:linear-gradient(to bottom,rgba(244,182,63,.94) 0%,rgba(244,182,63,.72) 60%,rgba(244,182,63,.92) 100%)}
-.todo a.gold .tag,.todo a.gold .t,.todo a.gold .s{color:var(--navy)}
-.todo a.gold svg{color:var(--navy)}
-.prog,.programs .prog{border:0;border-top:4px solid var(--gold)}
-.todo .t,.prog .n,.todo .tag,.prog .tag{text-shadow:0 1px 14px rgba(10,10,40,.45)}
-.todo a.gold .t,.todo a.gold .tag{text-shadow:none}
-
-/* advocacy */
-.advocacy{background:var(--navy);color:#fff}
-.advocacy .wrap{display:grid;grid-template-columns:480px 1fr;gap:80px;align-items:center}
-.advocacy h2{margin:14px 0 22px}
-.advocacy p{font-size:18px;color:#e6e6f5;margin:0 0 20px;line-height:1.65}
-.adv-imgs{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:32px}
-.adv-imgs div{aspect-ratio:1024/577;background:var(--navy-soft);overflow:hidden}
-.adv-imgs img{width:100%;height:100%;object-fit:cover}
-.adv-links{display:grid;grid-template-columns:repeat(2,1fr);column-gap:32px}
-.adv-links a{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:48px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.22);font-weight:600;font-size:16px}
-.adv-links a:hover{color:var(--gold)}
-.adv-links svg{color:var(--gold);flex:none}
-
-/* updates */
-.updates .grid{display:grid;grid-template-columns:340px 1fr;gap:64px;align-items:stretch}
-.updates .img{min-height:340px;background:var(--tint);overflow:hidden;border-radius:6px}
-.updates .img img{width:100%;height:100%;object-fit:cover}
-.posts{border-bottom:1px solid var(--line)}
-.post{display:flex;flex-direction:column;justify-content:center;gap:8px;min-height:120px;border-top:1px solid var(--line);padding:16px 0 16px 4px}
-.post .dt{font-size:14px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--gold-ink)}
-.post .ti{font-family:Archivo,sans-serif;font-weight:800;font-size:26px;line-height:1.15}
-.post .rm{font-weight:600;font-size:16px}
-.post:hover .ti{color:var(--navy-soft);text-decoration:underline;text-underline-offset:4px}
-
-/* join */
-.join-band{background:var(--gold);padding:clamp(56px,8vw,90px) 0}
-.join-band .wrap{display:grid;grid-template-columns:1fr 480px;gap:96px;align-items:center}
-.join-band h2{font-weight:900;font-style:italic;font-size:clamp(56px,8vw,88px);line-height:.95;letter-spacing:-.02em}
-.join-band .tl{font-family:Newsreader,Georgia,serif;font-style:italic;font-size:30px;line-height:1.25;margin:20px 0 28px}
-.join-band .cta{display:flex;gap:16px;flex-wrap:wrap}
-.join-band .slide{height:300px;background:var(--navy);border:6px solid var(--navy);overflow:hidden}
-.join-band .slide img{width:100%;height:100%;object-fit:cover}
-
-/* footer */
-footer{background:var(--navy-deep);color:#fff;padding:88px 0 0}
-.foot{display:grid;grid-template-columns:340px repeat(3,1fr);gap:64px;align-items:start}
-.foot .chip{display:inline-block;background:#fff;padding:12px 16px;border-radius:6px;margin-bottom:20px}
-.foot .chip img{height:84px;width:auto}
-.foot address{font-style:normal;font-size:16px;line-height:1.7;color:#e6e6f5;margin-bottom:20px}
-.foot address a:hover,.foot li a:hover{color:var(--gold)}
-.foot h4{font-family:Archivo,sans-serif;font-weight:800;font-size:16px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin:0 0 16px}
-.foot ul{list-style:none;margin:0;padding:0}
-.foot li a{display:block;padding:5px 0;font-size:16px;color:#e6e6f5}
-.bottom{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;margin-top:72px;padding:28px 0;border-top:1px solid rgba(255,255,255,.2);font-size:14px;color:#c9c9e0}
-.bottom .soc{display:flex;gap:28px;color:#fff}
-.bottom .soc a:hover{color:var(--gold)}
-
-/* responsive */
-@media (max-width:1080px){
-  .hero .wrap,.about .wrap,.advocacy .wrap,.updates .grid,.join-band .wrap{grid-template-columns:1fr;gap:56px}
-  .hero-media{max-width:560px;margin-right:28px}
-  .todo,.tools,.progs{grid-template-columns:repeat(2,1fr)}
-  .foot{grid-template-columns:1fr 1fr;gap:48px}
-  .tools-split{grid-template-columns:1fr}
-  .tools-img{min-height:260px}
-  .updates .img{min-height:0;aspect-ratio:3/2;max-width:420px}
-  .join-band .slide{max-width:520px}
-}
-@media (max-width:900px){
-  .burger{display:inline-flex;align-items:center;justify-content:center}
-  .menu{display:none;position:absolute;left:0;right:0;top:100%;background:#fff;flex-direction:column;align-items:stretch;gap:0;padding:8px var(--pad) 24px;border-bottom:1px solid var(--line);box-shadow:0 20px 30px -20px rgba(25,24,64,.4)}
-  .menu.open{display:flex}
-  .menu a{padding:16px 0;border-bottom:1px solid var(--line)}
-  .menu .join{text-align:center;margin-top:16px;border:0}
-  .nav .logo img{height:60px}
-  .nav .wrap{min-height:80px}
-}
-@media (max-width:600px){
-  .util .group:last-child{display:none}
-  .todo,.tools,.tools-split .tools,.progs,.adv-links,.adv-imgs{grid-template-columns:1fr}
-  .foot{grid-template-columns:1fr}
-  .stat{flex-direction:column;align-items:flex-start;gap:6px}
-  .stat span{text-align:left}
-  .hero p{font-size:18px}
-  .btn{width:100%}
-  .chips .btn{width:auto}
-}
-@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
-
-/* ---- mobile & tablet QA patch ---- */
-h1,h2,.join-band .tl{text-wrap:balance}
-p{text-wrap:pretty}
-html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
-.todo .tag,.prog .tag{font-size:14px}
-.util a,.bottom .soc a{display:inline-flex;align-items:center;min-height:44px}
-.tools-img{position:relative}
-.tools-img img{position:absolute;inset:0}
-.hero .ghost{max-width:100%}
-@media (max-width:1080px){
-  .stamp{max-width:560px}
-  .foot li a{display:flex;align-items:center;min-height:44px;padding:0}
-  .tools-img{min-height:0;aspect-ratio:16/9}
-  .advocacy .wrap,.about .wrap,.updates .grid{gap:44px}
-}
-@media (max-width:900px){
-  section{padding:64px 0}
-  .nav .wrap{min-height:76px}
-  .menu a{min-height:52px;display:flex;align-items:center}
-  .menu .join{justify-content:center}
-  .burger{width:48px;height:48px}
-}
-@media (max-width:600px){
-  :root{--pad:20px}
-  section{padding:56px 0}
-  .hero{padding:44px 0 56px}
-  .hero .wrap{gap:40px}
-  .hero h1{font-size:clamp(44px,13.5vw,60px);margin:18px 0 22px}
-  .hero p{margin-bottom:26px}
-  .hero-media{margin-right:20px}
-  .hero-media::before{inset:18px -18px -18px 18px}
-  h2{font-size:clamp(30px,8.6vw,38px)}
-  .sec-head{margin-bottom:28px}
-  .about p{font-size:17px}
-  .stat{padding:18px 0}
-  .todo{gap:14px}
-  .todo a{min-height:200px;padding:24px 24px 64px}
-  .todo svg{left:24px;bottom:22px}
-  .todo .t{font-size:24px}
-  .running h3{margin:44px 0 16px;font-size:24px}
-  .tools{gap:10px}
-  .tools a{min-height:52px}
-  .tools-img{aspect-ratio:4/3}
-  .progs{gap:14px}
-  .prog{min-height:176px;padding:20px 20px 56px}
-  .prog .n{font-size:22px}
-  .prog svg{right:18px;bottom:16px}
-  .prog.all{padding:20px}
-  .adv-imgs{grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:24px}
-  .adv-links{grid-template-columns:1fr}
-  .post{min-height:0;padding:20px 0 20px 2px}
-  .post .ti{font-size:22px}
-  .updates .img{max-width:none;aspect-ratio:3/2}
-  .join-band{padding:56px 0}
-  .join-band .tl{font-size:26px}
-  .join-band .slide{height:auto;aspect-ratio:3/2;max-width:none;border-width:4px}
-  footer{padding-top:56px}
-  .foot{gap:32px}
-  .foot .chip img{height:72px}
-  .bottom{margin-top:40px;padding:22px 0 28px}
-}
-@media (max-width:360px){
-  :root{--pad:16px}
-  .btn{font-size:16px;padding:0 20px}
-  .util .wrap{gap:12px}
-  .util .group{gap:16px}
-  .nav .logo img{height:52px}
-  .hero h1{font-size:42px}
-  .stat b{font-size:36px}
-  .stat b.sm{font-size:28px}
-}
-@media (hover:none){
-  .todo a:hover::before,.prog:not(.all):hover::before{transform:none}
-  .btn:hover{transform:none}
-}
-</style>
+<link rel="icon" href="images/logo.png">
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
+<a class="skip" href="#content">Skip to content</a>
 <div class="util">
   <div class="wrap">
     <div class="group"><a href="tel:3199815210">319-981-5210</a><a href="mailto:info@iowapta.org">info@iowapta.org</a></div>
-    <div class="group"><a href="https://iowapta.org/">Calendar</a><a href="https://iowapta.org/">IPTA In Action</a><a href="https://shoppta.com/">IPTA @ ShopPTA.com</a><a href="https://www.pta.org/">National PTA</a></div>
+    <div class="group"><a href="https://iowapta.org/events/month/" target="_blank" rel="noopener">Calendar</a><a href="ipta-in-action.html">IPTA In Action</a><a href="https://stores.shoppta.com/index.lasso?host=IAPTA" target="_blank" rel="noopener">IPTA @ ShopPTA.com</a><a href="https://www.pta.org/" target="_blank" rel="noopener">National PTA</a></div>
   </div>
 </div>
 
 <header class="nav" id="top">
   <div class="wrap">
-    <a class="logo" href="#top" aria-label="Iowa PTA home"><img src="images/logo.png" alt="Iowa PTA, every child. one voice."></a>
+    <a class="logo" href="index.html" aria-label="Iowa PTA home"><img src="images/logo.png" alt="Iowa PTA, every child. one voice."></a>
     <button class="burger" id="burger" aria-label="Toggle menu" aria-expanded="false" aria-controls="menu">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
     </button>
     <nav class="menu" id="menu" aria-label="Main">
-      <a href="#running">Running Your PTA</a>
-      <a href="#advocacy">Advocacy</a>
-      <a href="#programs">Programs &amp; Events</a>
-      <a href="#about">About Us</a>
-      <a href="https://iowapta.org/">Donate</a>
-      <a href="#contact">Contact Us</a>
-      <a class="join" href="#join">JOIN PTA!</a>
+      <ul class="nav-list">
+        <li class="has-sub"><a href="running-your-pta.html">Running Your PTA</a><button class="sub-toggle" aria-expanded="false" aria-label="Show Running Your PTA pages"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><div class="sub sub-wide"><ul><li><a href="membership.html">Membership</a><ul><li><a href="develop-a-membership-plan.html">Develop a Membership Plan</a></li><li><a href="membership-awards.html">Membership Awards</a></li><li><a href="pta-branded-merchandise.html">PTA Branded Merchandise</a></li></ul></li><li><a href="toolkits-elearning.html">Toolkits &amp; eLearning</a></li><li><a href="national-standards-for-family-school-partnerships.html">National Standards for Family School Partnerships</a></li><li><a href="awards-grants.html">Awards &amp; Grants</a></li><li><a href="forms-for-leaders.html">Forms for Leaders</a></li><li><a href="roberts-rules-of-order.html">Roberts Rules of Order</a></li><li><a href="bylaws.html">Bylaws</a></li><li><a href="officers-and-committees.html">Officers and Committees</a></li><li><a href="finance.html">Finance</a><ul><li><a href="insurance.html">Insurance</a></li><li><a href="taxes-audits.html">Taxes &amp; Audits</a></li><li><a href="gambling-and-sales-tax.html">Gambling and Sales Tax</a></li></ul></li><li><a href="starting-or-merging-a-pta.html">Starting or Merging a PTA</a></li><li><a href="ipta-standards-of-affiliation-for-local-units.html">IPTA Standards of Affiliation for Local Units</a></li><li><a href="memberhub.html">MemberHub</a></li></ul></div></li><li class="has-sub"><a href="advocacy.html">Advocacy</a><button class="sub-toggle" aria-expanded="false" aria-label="Show Advocacy pages"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><div class="sub"><ul><li><a href="ipta-state-and-federal-legislative-platform.html">IPTA State and Federal Legislative Platform</a></li><li><a href="suggest-a-platform-change.html">Suggest a Platform Change</a></li><li><a href="ptas-positions.html">PTA&#x27;s Positions</a></li><li><a href="register-to-vote.html">Register to Vote!</a></li><li><a href="advocacy-toolkit.html">Advocacy Toolkit</a></li><li><a href="pta-takes-action.html">PTA Takes Action</a></li><li><a href="resources.html">Resources</a><ul><li><a href="state-and-national-websites.html">State and National Websites</a></li><li><a href="articles-for-advocates.html">Articles for Advocates</a></li></ul></li></ul></div></li><li class="has-sub"><a href="programs-events.html">Programs &amp; Events</a><button class="sub-toggle" aria-expanded="false" aria-label="Show Programs &amp; Events pages"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><div class="sub"><ul><li><a href="npta-school-of-excellence.html">NPTA School of Excellence</a></li><li><a href="reflections.html">Reflections</a></li><li><a href="family-reading-experience.html">Family Reading Experience</a></li><li><a href="stem-families.html">STEM + Families</a></li><li><a href="pta-connected.html">PTA Connected</a></li><li><a href="healthy-lifestyles.html">Healthy Lifestyles</a></li><li><a href="connect-4-respect.html">Connect 4 Respect</a></li><li><a href="hl-taylor-scholarship.html">HL Taylor Scholarship</a></li><li><a href="founders-day.html">Founder&#x27;s Day</a></li></ul></div></li><li class="has-sub"><a href="about-us.html">About Us</a><button class="sub-toggle" aria-expanded="false" aria-label="Show About Us pages"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><div class="sub"><ul><li><a href="mission.html">Mission</a></li><li><a href="board-of-directors-committees-staff.html">Board of Directors, Committees, Staff</a></li><li><a href="partners-sponsors.html">Partners &amp; Sponsors</a></li><li><a href="history.html">History</a></li><li><a href="ipta-governance.html">IPTA Governance</a></li><li><a href="why-join-pta.html">Why Join PTA?</a></li><li><a href="iowa-pta-past-presidents.html">Iowa PTA Past Presidents</a></li></ul></div></li><li><a href="https://www.memberplanet.com/campaign/iowapta/communitydonating_146" target="_blank" rel="noopener">Donate</a></li><li class="has-sub"><a href="contact-us.html">Contact Us</a><button class="sub-toggle" aria-expanded="false" aria-label="Show Contact Us pages"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><div class="sub"><ul><li><a href="https://iowapta.org/wp-content/uploads/2022/11/Board_of_Directors_Recruitment_Packet-1.pdf" target="_blank" rel="noopener">Join our Team!</a></li><li><a href="https://www.pta.org/" target="_blank" rel="noopener">National PTA</a></li></ul></div></li><li><a href="join-pta.html" class="join">JOIN PTA!</a></li>
+      </ul>
     </nav>
   </div>
 </header>
 
-<main>
+<main id="content">
 <!-- HERO -->
 <section class="hero" style="padding-block:clamp(56px,8vw,96px)">
   <div class="ghost" aria-hidden="true">PTA</div>
@@ -346,7 +45,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
       <p>The mission of the Iowa PTA is to make every child's potential a reality by engaging and empowering families and communities to advocate for all children.</p>
       <div class="cta">
         <a class="btn btn-gold" href="#join">JOIN PTA!</a>
-        <a class="btn btn-line-w" href="https://iowapta.org/">Apply to join our Board</a>
+        <a class="btn btn-line-w" href="apply-to-join-our-board.html">Apply to join our Board</a>
       </div>
     </div>
     <div class="hero-media">
@@ -364,10 +63,10 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
       <p>The Iowa Congress of Parents and Teachers (Iowa PTA) is a member of the National PTA. It is a membership association with more than 4,000 members, and over 130 local units.</p>
       <p>Operating from Cedar Rapids under Executive Director Gretchen Paricka, with an elected board and appointed chairs, Iowa PTA hosts an annual statewide convention and a fall leadership conference focused on training leaders and advocating for child health, education, and safety.</p>
       <div class="chips">
-        <a class="btn btn-line-n btn-sm" href="https://iowapta.org/">Mission</a>
-        <a class="btn btn-line-n btn-sm" href="https://iowapta.org/">Board of Directors</a>
-        <a class="btn btn-line-n btn-sm" href="https://iowapta.org/">History</a>
-        <a class="btn btn-line-n btn-sm" href="https://iowapta.org/">Why Join PTA</a>
+        <a class="btn btn-line-n btn-sm" href="mission.html">Mission</a>
+        <a class="btn btn-line-n btn-sm" href="board-of-directors-committees-staff.html">Board of Directors</a>
+        <a class="btn btn-line-n btn-sm" href="history.html">History</a>
+        <a class="btn btn-line-n btn-sm" href="why-join-pta.html">Why Join PTA</a>
       </div>
     </div>
     <div>
@@ -386,25 +85,25 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   <div class="wrap">
     <div class="sec-head"><div class="eyebrow">Running Your PTA</div><h2>Your to-do list</h2></div>
     <div class="todo">
-      <a style="--bg:var(--bg2)" href="https://iowapta.org/"><div class="tag">Updates</div><div class="t">Program &amp; Advocacy Updates</div><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
-      <a style="--bg:var(--bg9)" href="https://iowapta.org/"><div class="tag">Units</div><div class="t">Unit Registration Form</div><div class="s">Update your info today</div><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
-      <a class="gold" style="--bg:var(--bgA);--pos:center 35%" href="#join"><div class="tag">Membership</div><div class="t">Join PTA!</div><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
-      <a style="--bg:var(--bg6)" href="https://iowapta.org/"><div class="tag">Leadership</div><div class="t">Apply to join our Board of Directors &amp; Committees</div><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+      <a style="--bg:var(--bg2)" href="program-advocacy-updates.html"><div class="tag">Updates</div><div class="t">Program &amp; Advocacy Updates</div><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+      <a style="--bg:var(--bg9)" href="unit-registration-form.html"><div class="tag">Units</div><div class="t">Unit Registration Form</div><div class="s">Update your info today</div><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+      <a class="gold" style="--bg:var(--bgA);--pos:center 35%" href="join-pta.html"><div class="tag">Membership</div><div class="t">Join PTA!</div><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+      <a style="--bg:var(--bg6)" href="apply-to-join-our-board.html"><div class="tag">Leadership</div><div class="t">Apply to join our Board of Directors &amp; Committees</div><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
     </div>
     <h3>Tools for PTA leaders</h3>
     <div class="tools-split">
     <div class="tools">
-      <a href="https://iowapta.org/"><span>Membership</span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
-      <a href="https://iowapta.org/"><span>Toolkits &amp; eLearning</span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
-      <a href="https://iowapta.org/"><span>Awards &amp; Grants</span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
-      <a href="https://iowapta.org/"><span>Finance</span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
-      <a href="https://iowapta.org/"><span>Forms for Leaders</span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
-      <a href="https://iowapta.org/"><span>Roberts Rules of Order</span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
-      <a href="https://iowapta.org/"><span>Bylaws</span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
-      <a href="https://iowapta.org/"><span>Officers and Committees</span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
-      <a href="https://iowapta.org/"><span>Starting or Merging a PTA</span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
-      <a href="https://iowapta.org/"><span>IPTA Standards of Affiliation</span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
-      <a href="https://iowapta.org/"><span>MemberHub</span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+      <a href="membership.html"><span>Membership</span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+      <a href="toolkits-elearning.html"><span>Toolkits &amp; eLearning</span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+      <a href="awards-grants.html"><span>Awards &amp; Grants</span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+      <a href="finance.html"><span>Finance</span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+      <a href="forms-for-leaders.html"><span>Forms for Leaders</span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+      <a href="roberts-rules-of-order.html"><span>Roberts Rules of Order</span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+      <a href="bylaws.html"><span>Bylaws</span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+      <a href="officers-and-committees.html"><span>Officers and Committees</span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+      <a href="starting-or-merging-a-pta.html"><span>Starting or Merging a PTA</span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+      <a href="ipta-standards-of-affiliation-for-local-units.html"><span>IPTA Standards of Affiliation</span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+      <a href="memberhub.html"><span>MemberHub</span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
     </div>
     <div class="tools-img"><img loading="lazy" decoding="async" src="images/photo-04.jpg" alt="Parents and a teacher meeting at a school table"></div>
     </div>
@@ -419,17 +118,17 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
     <div class="sec-head"><div class="eyebrow">Programs &amp; Events</div><h2>Programs that put kids first</h2></div>
     <div class="progs">
       <a class="prog" style="--bg:var(--bgC);--pos:center" href="https://www.pta.org/home/events/About-Every-Child-in-Focus"><div class="tag">Monthly campaign</div><div class="n">Every Child In Focus</div><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
-      <a class="prog" style="--bg:var(--bgB);--pos:center 68%" href="https://iowapta.org/programs-events/npta-school-of-excellence/"><div class="tag">Recognition</div><div class="n">NPTA School of Excellence</div><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
-      <a class="prog" style="--bg:var(--bgI);--pos:center 40%" href="https://iowapta.org/programs-events/reflections/"><div class="tag">Arts</div><div class="n">Reflections</div><div class="d">Enroll your school in the national arts awards program.</div><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
-      <a class="prog" style="--bg:var(--bgF);--pos:center 40%" href="https://iowapta.org/programs-events/family-reading-experience/"><div class="tag">Literacy</div><div class="n">Family Reading Experience</div><div class="d">Plan a literacy-focused event for National Reading Month in March.</div><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
-      <a class="prog" style="--bg:var(--bgH);--pos:center 50%" href="https://iowapta.org/programs-events/stem-families/"><div class="tag">Grants</div><div class="n">STEM + Families</div><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
-      <a class="prog" style="--bg:var(--bgG);--pos:center 68%" href="https://iowapta.org/programs-events/pta-connected/"><div class="tag">Grants</div><div class="n">PTA Connected</div><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
-      <a class="prog" style="--bg:var(--bg4);--pos:center" href="https://iowapta.org/programs-events/healthy-lifestyles/"><div class="tag">Wellness</div><div class="n">Healthy Lifestyles</div><div class="d">Host a Healthy Lifestyles-related event.</div><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
-      <a class="prog" style="--bg:var(--bgE);--pos:center 50%" href="https://iowapta.org/programs-events/connect-4-respect/"><div class="tag">Program</div><div class="n">Connect 4 Respect</div><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
-      <a class="prog" style="--bg:var(--bgD);--pos:center 50%" href="https://iowapta.org/programs-events/hl-taylor-scholarship/"><div class="tag">Scholarship</div><div class="n">HL Taylor Scholarship</div><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
-      <a class="prog" style="--bg:var(--bg1);--pos:center" href="https://iowapta.org/programs-events/founders-day/"><div class="tag">Event</div><div class="n">Founder's Day</div><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
-      <a class="prog" style="--bg:var(--bg8);--pos:center" href="https://iowapta.org/programs-events/lifetime-achievement/"><div class="tag">Award</div><div class="n">Lifetime Achievement</div><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
-      <a class="prog all" href="https://iowapta.org/programs-events/"><img loading="lazy" decoding="async" src="images/photo-06.jpg" alt=""><span class="shade"></span><div class="n">All programs &amp; events</div><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+      <a class="prog" style="--bg:var(--bgB);--pos:center 68%" href="npta-school-of-excellence.html"><div class="tag">Recognition</div><div class="n">NPTA School of Excellence</div><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+      <a class="prog" style="--bg:var(--bgI);--pos:center 40%" href="reflections.html"><div class="tag">Arts</div><div class="n">Reflections</div><div class="d">Enroll your school in the national arts awards program.</div><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+      <a class="prog" style="--bg:var(--bgF);--pos:center 40%" href="family-reading-experience.html"><div class="tag">Literacy</div><div class="n">Family Reading Experience</div><div class="d">Plan a literacy-focused event for National Reading Month in March.</div><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+      <a class="prog" style="--bg:var(--bgH);--pos:center 50%" href="stem-families.html"><div class="tag">Grants</div><div class="n">STEM + Families</div><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+      <a class="prog" style="--bg:var(--bgG);--pos:center 68%" href="pta-connected.html"><div class="tag">Grants</div><div class="n">PTA Connected</div><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+      <a class="prog" style="--bg:var(--bg4);--pos:center" href="healthy-lifestyles.html"><div class="tag">Wellness</div><div class="n">Healthy Lifestyles</div><div class="d">Host a Healthy Lifestyles-related event.</div><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+      <a class="prog" style="--bg:var(--bgE);--pos:center 50%" href="connect-4-respect.html"><div class="tag">Program</div><div class="n">Connect 4 Respect</div><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+      <a class="prog" style="--bg:var(--bgD);--pos:center 50%" href="hl-taylor-scholarship.html"><div class="tag">Scholarship</div><div class="n">HL Taylor Scholarship</div><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+      <a class="prog" style="--bg:var(--bg1);--pos:center" href="founders-day.html"><div class="tag">Event</div><div class="n">Founder's Day</div><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+      <a class="prog" style="--bg:var(--bg8);--pos:center" href="lifetime-achievement.html"><div class="tag">Award</div><div class="n">Lifetime Achievement</div><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+      <a class="prog all" href="programs-events.html"><img loading="lazy" decoding="async" src="images/photo-06.jpg" alt=""><span class="shade"></span><div class="n">All programs &amp; events</div><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
     </div>
   </div>
 </section>
@@ -442,7 +141,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
       <h2>Speaking up for every child</h2>
       <p>A core principle of Iowa PTA's mission is to promote the safety and wellbeing of all children. We advocate for improving public education and for protecting public funding.</p>
       <p>Iowa PTA opposes voucher systems and works to guarantee that public funds are not diverted to any private school choice proposal and/or voucher system.</p>
-      <a class="btn btn-gold" href="https://iowapta.org/advocacy/">Take action</a>
+      <a class="btn btn-gold" href="advocacy.html">Take action</a>
     </div>
     <div>
       <div class="adv-imgs">
@@ -452,13 +151,13 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
         <div><img loading="lazy" decoding="async" src="images/photo-10.jpg" alt="Two parents meeting with a teacher"></div>
       </div>
       <div class="adv-links">
-        <a href="https://iowapta.org/advocacy/"><span>Advocacy Toolkit</span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
-        <a href="https://iowapta.org/advocacy/"><span>IPTA State and Federal Legislative Platform</span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
-        <a href="https://iowapta.org/advocacy/"><span>PTA Takes Action</span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
-        <a href="https://iowapta.org/advocacy/"><span>PTA's Positions</span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
-        <a href="https://iowapta.org/advocacy/"><span>Register to Vote!</span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
-        <a href="https://iowapta.org/advocacy/"><span>Resources</span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
-        <a href="https://iowapta.org/advocacy/"><span>Suggest a Platform Change</span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+        <a href="advocacy-toolkit.html"><span>Advocacy Toolkit</span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+        <a href="ipta-state-and-federal-legislative-platform.html"><span>IPTA State and Federal Legislative Platform</span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+        <a href="pta-takes-action.html"><span>PTA Takes Action</span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+        <a href="ptas-positions.html"><span>PTA's Positions</span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+        <a href="register-to-vote.html"><span>Register to Vote!</span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+        <a href="resources.html"><span>Resources</span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+        <a href="suggest-a-platform-change.html"><span>Suggest a Platform Change</span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
       </div>
     </div>
   </div>
@@ -471,9 +170,9 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
     <div class="grid">
       <div class="img"><img loading="lazy" decoding="async" src="images/photo-11.jpg" alt="Speaker at the National PTA Legislative Conference 2024"></div>
       <div class="posts">
-        <a class="post" href="https://iowapta.org/"><div class="dt">August 6, 2024</div><div class="ti">Website Update (Address Change)</div><div class="rm">Read More »</div></a>
-        <a class="post" href="https://iowapta.org/"><div class="dt">March 4, 2024</div><div class="ti">Website Updates</div><div class="rm">Read More »</div></a>
-        <a class="post" href="https://iowapta.org/"><div class="dt">March 4, 2024</div><div class="ti">Updates Section Explanation</div><div class="rm">Read More »</div></a>
+        <a class="post" href="website-updateaddress-change.html"><div class="dt">August 6, 2024</div><div class="ti">Website Update (Address Change)</div><div class="rm">Read More »</div></a>
+        <a class="post" href="website-updates.html"><div class="dt">March 4, 2024</div><div class="ti">Website Updates</div><div class="rm">Read More »</div></a>
+        <a class="post" href="what-is-the-updates-section.html"><div class="dt">March 4, 2024</div><div class="ti">Updates Section Explanation</div><div class="rm">Read More »</div></a>
       </div>
     </div>
   </div>
@@ -486,8 +185,8 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
       <h2>Join PTA!</h2>
       <p class="tl">Every child. One voice. Add yours.</p>
       <div class="cta">
-        <a class="btn btn-navy" href="https://iowapta.org/">Become a member</a>
-        <a class="btn btn-line-n" href="https://iowapta.org/">Why join PTA</a>
+        <a class="btn btn-navy" href="join-pta.html">Become a member</a>
+        <a class="btn btn-line-n" href="why-join-pta.html">Why join PTA</a>
       </div>
     </div>
     <div class="slide"><img loading="lazy" decoding="async" src="images/photo-12.jpg" alt="A smiling mother and daughter meeting with a teacher"></div>
@@ -499,31 +198,23 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   <div class="wrap">
     <div class="foot">
       <div>
-        <div class="chip"><img loading="lazy" decoding="async" src="images/logo.png" alt="Iowa PTA, every child. one voice."></div>
+        <div class="chip"><img src="images/logo.png" alt="Iowa PTA, every child. one voice." loading="lazy"></div>
         <address>390 17th St SE<br>Cedar Rapids, IA 52403<br><a href="tel:3199815210">319-981-5210</a><br><a href="mailto:info@iowapta.org">info@iowapta.org</a></address>
-        <a class="btn btn-gold btn-sm" href="https://iowapta.org/">Donate</a>
+        <a class="btn btn-gold btn-sm" href="https://www.memberplanet.com/campaign/iowapta/communitydonating_146" target="_blank" rel="noopener">Donate</a>
       </div>
-      <div><h4>About Us</h4><ul>
-        <li><a href="https://iowapta.org/">Mission</a></li><li><a href="https://iowapta.org/">Board of Directors</a></li><li><a href="https://iowapta.org/">Partners &amp; Sponsors</a></li><li><a href="https://iowapta.org/">History</a></li><li><a href="https://iowapta.org/">Governance</a></li><li><a href="https://iowapta.org/">Why Join PTA</a></li><li><a href="https://iowapta.org/">Past Presidents</a></li></ul></div>
-      <div><h4>Advocacy</h4><ul>
-        <li><a href="https://iowapta.org/advocacy/">Legislative Platform</a></li><li><a href="https://iowapta.org/advocacy/">Suggest Platform Changes</a></li><li><a href="https://iowapta.org/advocacy/">PTA Positions</a></li><li><a href="https://iowapta.org/advocacy/">Voter Registration</a></li><li><a href="https://iowapta.org/advocacy/">Advocacy Toolkit</a></li><li><a href="https://iowapta.org/advocacy/">PTA Takes Action</a></li><li><a href="https://iowapta.org/advocacy/">Resources</a></li></ul></div>
-      <div><h4>Programs &amp; Events</h4><ul>
-        <li><a href="https://iowapta.org/programs-events/npta-school-of-excellence/">School of Excellence</a></li><li><a href="https://iowapta.org/programs-events/reflections/">Reflections</a></li><li><a href="https://iowapta.org/programs-events/family-reading-experience/">Family Reading Experience</a></li><li><a href="https://iowapta.org/programs-events/stem-families/">STEM + Families</a></li><li><a href="https://iowapta.org/programs-events/pta-connected/">PTA Connected</a></li><li><a href="https://iowapta.org/programs-events/healthy-lifestyles/">Healthy Lifestyles</a></li><li><a href="https://iowapta.org/programs-events/connect-4-respect/">Connect 4 Respect</a></li><li><a href="https://iowapta.org/programs-events/hl-taylor-scholarship/">HL Taylor Scholarship</a></li><li><a href="https://iowapta.org/programs-events/founders-day/">Founder's Day</a></li></ul></div>
+      <div><h2 class="fh">About Us</h2><ul><li><a href="mission.html">Mission</a></li><li><a href="board-of-directors-committees-staff.html">Board of Directors, Committees, Staff</a></li><li><a href="partners-sponsors.html">Partners &amp; Sponsors</a></li><li><a href="history.html">History</a></li><li><a href="ipta-governance.html">IPTA Governance</a></li><li><a href="why-join-pta.html">Why Join PTA?</a></li><li><a href="iowa-pta-past-presidents.html">Iowa PTA Past Presidents</a></li></ul></div>
+      <div><h2 class="fh">Advocacy</h2><ul><li><a href="ipta-state-and-federal-legislative-platform.html">IPTA State and Federal Legislative Platform</a></li><li><a href="suggest-a-platform-change.html">Suggest a Platform Change</a></li><li><a href="ptas-positions.html">PTA&#x27;s Positions</a></li><li><a href="register-to-vote.html">Register to Vote!</a></li><li><a href="advocacy-toolkit.html">Advocacy Toolkit</a></li><li><a href="pta-takes-action.html">PTA Takes Action</a></li><li><a href="resources.html">Resources</a></li></ul></div>
+      <div><h2 class="fh">Programs &amp; Events</h2><ul><li><a href="npta-school-of-excellence.html">NPTA School of Excellence</a></li><li><a href="reflections.html">Reflections</a></li><li><a href="family-reading-experience.html">Family Reading Experience</a></li><li><a href="stem-families.html">STEM + Families</a></li><li><a href="pta-connected.html">PTA Connected</a></li><li><a href="healthy-lifestyles.html">Healthy Lifestyles</a></li><li><a href="connect-4-respect.html">Connect 4 Respect</a></li><li><a href="hl-taylor-scholarship.html">HL Taylor Scholarship</a></li><li><a href="founders-day.html">Founder&#x27;s Day</a></li></ul></div>
     </div>
     <div class="bottom">
       <div>© Iowa Congress of Parents and Teachers. Every Child. One Voice.</div>
-      <div class="soc"><a href="https://www.facebook.com/">Facebook</a><a href="https://www.instagram.com/">Instagram</a><a href="https://twitter.com/">Twitter</a></div>
+      <div class="soc"><a href="https://www.facebook.com/iowapta.board/?ref=bookmarks" target="_blank" rel="noopener">Facebook</a><a href="https://www.instagram.com/iowapta/" target="_blank" rel="noopener">Instagram</a><a href="https://twitter.com/IowaPTA?s=17" target="_blank" rel="noopener">Twitter</a></div>
     </div>
   </div>
 </footer>
+<script src="js/main.js"></script>
 
-<script>
-(function(){
-  var b=document.getElementById('burger'),m=document.getElementById('menu');
-  b.addEventListener('click',function(){var o=m.classList.toggle('open');b.setAttribute('aria-expanded',o)});
-  m.addEventListener('click',function(e){if(e.target.tagName==='A'){m.classList.remove('open');b.setAttribute('aria-expanded',false)}});
-})();
-</script>
+
 
 
 </body></html>
