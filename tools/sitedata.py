@@ -109,7 +109,7 @@ LIVE_SLUG = {
 }
 
 SECTION_IMG = {
-    "running-your-pta": "images/photo-04.jpg",
+    "running-your-pta": "images/photo-10.jpg",
     "advocacy": "images/photo-07.jpg",
     "programs-events": "images/bgC.jpg",
     "about-us": "images/photo-12.jpg",

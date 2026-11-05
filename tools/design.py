@@ -161,7 +161,11 @@ def bold_lead(p):
     kids = meaningful(p)
     if len(kids) < 2 or not (isinstance(kids[0], Tag) and kids[0].name == "strong") or kids[0].find("a"):
         return False
-    return len(text(kids[0])) < 70 and len(text(p)) - len(text(kids[0])) > 12
+    t = text(kids[0])
+    nxt = kids[1]
+    ends = t.rstrip().endswith((".", ":", "?", "!"))
+    sep = (isinstance(nxt, Tag) and nxt.name == "br") or (isinstance(nxt, NavigableString) and str(nxt).lstrip().startswith((":", "–", "-")))
+    return len(t) < 70 and (ends or sep) and len(text(p)) - len(t) > 12
 
 
 def feature_cards(soup, root):
@@ -333,6 +337,39 @@ def join_card(soup, root):
     root.append(card)
 
 
+ICONS = {
+    "collaboration": '<circle cx="9" cy="7" r="4"/><path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M21 21v-2a4 4 0 0 0-3-3.85"/>',
+    "commitment": '<path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"/>',
+    "diversity": '<circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15 15 0 0 1 4 10 15 15 0 0 1-4 10 15 15 0 0 1-4-10 15 15 0 0 1 4-10z"/>',
+    "respect": '<path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/>',
+    "accountability": '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/>',
+}
+
+
+def mission_layout(soup, root):
+    ps = root.find_all("p", recursive=False)
+    grid = root.find("div", class_="feat-grid")
+    if len(ps) < 3 or grid is None:
+        return
+    tag, statement, label = ps[0], ps[1], ps[2]
+    hero = BeautifulSoup(f'''<div class="mission-hero"><span class="m-tag">{tag.get_text()}</span>
+<p class="m-quote">{statement.decode_contents()}</p></div>''', "html.parser")
+    tag.replace_with(hero); statement.decompose()
+    h2 = soup.new_tag("h2", attrs={"class": "values-head"}); h2.string = text(label).rstrip(":")
+    label.replace_with(h2)
+    vals = soup.new_tag("div", attrs={"class": "values"})
+    for f in grid.find_all("div", class_="feat"):
+        name = text(f.find("h3"))
+        icon = ICONS.get(name.lower(), ICONS["respect"])
+        body = f.find("p").decode_contents()
+        wide = " wide" if len(text(f)) > 300 else ""
+        vals.append(BeautifulSoup(f'''<div class="value{wide}"><span class="v-icon"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">{icon}</svg></span><div><h3>{name}</h3><p>{body}</p></div></div>''', "html.parser"))
+    grid.replace_with(vals)
+
+
+PAGE_AFTER = {"mission": [mission_layout]}
+
+
 PAGE = {
     "join-pta": [join_card],
     "unit-registration-form": [join_card],
@@ -354,6 +391,8 @@ def enhance(html_str, slug):
     quotes(soup, root)
     chips(soup, root)
     cta_buttons(soup, root)
+    for fn in PAGE_AFTER.get(slug, []):
+        fn(soup, root)
     # first paragraph reads as an intro
     first = next((c for c in root.children if isinstance(c, Tag)), None)
     if first is not None and first.name == "p" and len(text(first)) > 60 and not first.find("img"):

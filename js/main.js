@@ -22,4 +22,6 @@
   });
   // close the mobile menu after jumping to an on-page anchor
   if(m)m.addEventListener('click',function(e){var a=e.target.closest('a');if(a&&a.getAttribute('href').indexOf('#')>-1){m.classList.remove('open');b&&b.setAttribute('aria-expanded',false)}});
+  var on=document.querySelector('.sub-tabs a.on');
+  if(on){var t=on.parentNode;t.scrollLeft=on.offsetLeft-t.offsetWidth/2+on.offsetWidth/2;}
 })();

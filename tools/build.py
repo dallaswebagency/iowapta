@@ -225,7 +225,6 @@ def footer():
     </div>
     <div class="bottom">
       <div>© Iowa Congress of Parents and Teachers. Every Child. One Voice. <span class="credit">Design &amp; Developed by <a href="https://dallaswebagency.us/" target="_blank" rel="noopener">Dallas Web Agency</a></span></div>
-      <div class="soc"><a href="{html.escape(EXT["facebook"])}" target="_blank" rel="noopener">Facebook</a><a href="{EXT["instagram"]}" target="_blank" rel="noopener">Instagram</a><a href="{html.escape(EXT["twitter"])}" target="_blank" rel="noopener">Twitter</a></div>
     </div>
   </div>
 </footer>
@@ -359,6 +358,99 @@ def crumbs(slug):
     return '<nav class="crumbs" aria-label="Breadcrumb">' + '<span aria-hidden="true">/</span>'.join(parts) + "</nav>"
 
 
+LANDING = {"running-your-pta", "advocacy", "programs-events", "about-us"}
+WIDE = {"forms-for-leaders", "ptas-positions", "advocacy-toolkit", "national-standards-for-family-school-partnerships",
+        "pta-branded-merchandise", "iowa-pta-past-presidents", "board-of-directors-committees-staff", "ipta-in-action",
+        "awards-grants", "state-and-national-websites", "articles-for-advocates", "program-advocacy-updates",
+        "toolkits-elearning", "membership-awards", "mission", "why-join-pta", "duties-of-officers"}
+STORY = {"history", "founders-day", "hl-taylor-scholarship", "reflections", "lifetime-achievement", "connect-4-respect",
+         "healthy-lifestyles", "family-reading-experience", "stem-families", "pta-connected", "npta-school-of-excellence",
+         "partners-sponsors", "reflections-theme-search", "ipta-governance", "website-updateaddress-change",
+         "website-updates", "what-is-the-updates-section"}
+
+CARD_IMGS = ["images/bg2.jpg", "images/bg9.jpg", "images/bg6.jpg", "images/bgB.jpg", "images/bgI.jpg", "images/bgF.jpg",
+             "images/bgH.jpg", "images/bgG.jpg", "images/bg4.jpg", "images/bgE.jpg", "images/bgD.jpg", "images/bg1.jpg",
+             "images/bg8.jpg", "images/photo-09.jpg", "images/photo-10.jpg", "images/photo-07.jpg"]
+
+
+def layout_of(slug):
+    if slug in LANDING: return "landing"
+    if slug in WIDE: return "wide"
+    if slug in STORY: return "story"
+    return "guide"
+
+
+def join_band():
+    return '''<section class="join-band join-slim">
+  <div class="wrap">
+    <div>
+      <h2>Join PTA!</h2>
+      <p class="tl">Every child. One voice. Add yours.</p>
+    </div>
+    <div class="cta">
+      <a class="btn btn-navy" href="join-pta.html">Become a member</a>
+      <a class="btn btn-line-n" href="why-join-pta.html">Why join PTA</a>
+    </div>
+  </div>
+</section>'''
+
+
+def todo_strip():
+    items = "".join(f'<a href="{href(s)}"><span>{html.escape(l)}</span>{ARROW}</a>' for s, l in TODO)
+    return f'<section class="todo-strip"><div class="wrap"><h2>The To-Do List</h2><div class="ts-links">{items}</div></div></section>'
+
+
+def sub_tabs(slug):
+    sec = section_of(slug)
+    if not sec:
+        return ""
+    sibs = [sec] + CHILDREN.get(sec, []) + SIDEBAR_EXTRA.get(sec, [])
+    out = []
+    for s in sibs:
+        if is_ext(s):
+            continue
+        lab = "Overview" if s == sec else LABEL.get(s, s)
+        cur = ' aria-current="page" class="on"' if s == slug or (s != sec and slug in CHILDREN.get(s, [])) else ""
+        out.append(f'<a href="{href(s)}"{cur}>{html.escape(lab)}</a>')
+    return f'<nav class="sub-tabs" aria-label="{html.escape(LABEL[sec])} pages"><div class="wrap"><div class="st-track">{"".join(out)}</div></div></nav>'
+
+
+def more_in_section(slug):
+    sec = section_of(slug) or PARENT.get(slug)
+    if not sec or sec == "updates":
+        sec_label, sibs = "Iowa PTA Updates", [s for s in ("what-is-the-updates-section", "website-updates", "website-updateaddress-change") if s != slug]
+    else:
+        sec_label = LABEL[sec]
+        sibs = [s for s in CHILDREN.get(sec, []) + SIDEBAR_EXTRA.get(sec, []) if s != slug and not is_ext(s)]
+    if not sibs:
+        return ""
+    tiles = "".join(f'<a href="{href(s)}"><span>{html.escape(LABEL.get(s, s))}</span>{ARROW}</a>' for s in sibs)
+    return f'<div class="more-in"><h2>More in {html.escape(sec_label)}</h2><div class="tools">{tiles}</div></div>'
+
+
+def photo_cards(slug):
+    kids = [k for k in CHILDREN.get(slug, []) + SIDEBAR_EXTRA.get(slug, [])]
+    out = []
+    for i, k in enumerate(kids):
+        img = PAGE_IMG.get(k) or CARD_IMGS[(i * 5 + len(slug)) % len(CARD_IMGS)]
+        ext = ' target="_blank" rel="noopener"' if is_ext(k) else ""
+        n = len(CHILDREN.get(k, []))
+        sub = f'<span class="pc-sub">{n} pages inside</span>' if n else ""
+        out.append(f'<a class="pcard" href="{href(k)}"{ext}><img src="{img}" alt="" loading="lazy"><span class="pc-num">{i + 1:02d}</span><strong>{html.escape(LABEL[k])}</strong>{sub}{ARROW}</a>')
+    return f'<section class="pcards"><div class="wrap"><div class="sec-head"><div class="eyebrow">Explore</div><h2>{html.escape(LABEL[slug])}</h2></div><div class="pc-grid">{"".join(out)}</div></div></section>'
+
+
+def split_lead(body):
+    """Pull the first paragraph out of the body for use in a hero."""
+    soup = BeautifulSoup(body, "html.parser")
+    first = next((c for c in soup.children if isinstance(c, Tag)), None)
+    if first is not None and first.name == "p" and not first.find("img") and len(first.get_text()) > 40:
+        lead = first.decode_contents()
+        first.decompose()
+        return lead, str(soup)
+    return "", body
+
+
 def page(slug, p, known):
     title = p["title"]
     h1 = h1_of(p["md"], title)
@@ -374,17 +466,64 @@ def page(slug, p, known):
         from datetime import datetime
         d = datetime.fromisoformat(p["date"][:19])
         date = f'<p class="post-date">{d.strftime("%B")} {d.day}, {d.year}</p>'
-    out = [head(f"{title} | Iowa PTA", describe(p["md"], title)), header(slug), '<main id="content">',
-           f'''<section class="page-hero">
+    lay = layout_of(slug)
+    E = html.escape
+    if lay == "landing":
+        lead, body = split_lead(body)
+        main_html = f'''<section class="hero lp-hero">
+  <div class="wrap">
+    <div>
+      {crumbs(slug)}
+      <div class="eyebrow">{E(eyebrow if sec != slug else "Iowa PTA")}</div>
+      <h1>{E(h1)}</h1>
+      {f'<p>{lead}</p>' if lead else ''}
+    </div>
+    <div class="lp-media"><img src="{img}" alt=""></div>
+  </div>
+</section>
+{photo_cards(slug)}
+{f'<section class="page-body lp-body"><div class="wrap"><article class="prose prose-wide">{body}</article></div></section>' if BeautifulSoup(body, "html.parser").get_text(strip=True) else ''}
+{todo_strip()}'''
+    elif lay == "wide":
+        main_html = f'''<section class="page-hero ph-wide">
+  <div class="wrap">
+    {crumbs(slug)}
+    <div class="eyebrow">{E(eyebrow)}</div>
+    <h1>{E(h1)}</h1>
+    {date}
+  </div>
+</section>
+{sub_tabs(slug)}
+<section class="page-body"><div class="wrap"><article class="prose prose-wide">
+{body}
+</article></div></section>
+{todo_strip()}'''
+    elif lay == "story":
+        main_html = f'''<section class="ph-story">
+  <img class="ps-img" src="{img}" alt="">
+  <div class="wrap">
+    {crumbs(slug)}
+    <div class="eyebrow">{E(eyebrow)}</div>
+    <h1>{E(h1)}</h1>
+    {date}
+  </div>
+</section>
+<section class="page-body story-body"><div class="wrap"><article class="prose prose-read">
+{body}
+{more_in_section(slug)}
+</article></div></section>
+{todo_strip()}'''
+    else:
+        main_html = f'''<section class="page-hero">
   <img class="ph-img" src="{img}" alt="">
   <div class="wrap">
     {crumbs(slug)}
-    <div class="eyebrow">{html.escape(eyebrow)}</div>
-    <h1>{html.escape(h1)}</h1>
+    <div class="eyebrow">{E(eyebrow)}</div>
+    <h1>{E(h1)}</h1>
     {date}
   </div>
-</section>''',
-           f'''<section class="page-body">
+</section>
+<section class="page-body">
   <div class="wrap page-grid">
     <article class="prose">
 {body}
@@ -395,19 +534,9 @@ def page(slug, p, known):
     {todo_card()}
     </aside>
   </div>
-</section>''',
-           f'''<section class="join-band join-slim">
-  <div class="wrap">
-    <div>
-      <h2>Join PTA!</h2>
-      <p class="tl">Every child. One voice. Add yours.</p>
-    </div>
-    <div class="cta">
-      <a class="btn btn-navy" href="join-pta.html">Become a member</a>
-      <a class="btn btn-line-n" href="why-join-pta.html">Why join PTA</a>
-    </div>
-  </div>
-</section>''', "</main>", footer(), "</body>\n</html>\n"]
+</section>'''
+    out = [head(f"{title} | Iowa PTA", describe(p["md"], title)), header(slug), '<main id="content" class="lay-' + lay + '">',
+           main_html, join_band(), "</main>", footer(), "</body>\n</html>\n"]
     return "\n".join(out), empty
 
 
