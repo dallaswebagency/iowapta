@@ -224,7 +224,8 @@ def footer():
       {col("Programs &amp; Events", "programs-events")}
     </div>
     <div class="bottom">
-      <div>© Iowa Congress of Parents and Teachers. Every Child. One Voice. <span class="credit">Design &amp; Developed by <a href="https://dallaswebagency.us/" target="_blank" rel="noopener">Dallas Web Agency</a></span></div>
+      <div>© Iowa Congress of Parents and Teachers. Every Child. One Voice.</div>
+      <div class="credit">Design &amp; Developed by <a href="https://dallaswebagency.us/" target="_blank" rel="noopener">Dallas Web Agency</a></div>
     </div>
   </div>
 </footer>
