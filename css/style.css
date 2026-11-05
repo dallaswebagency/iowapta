@@ -533,3 +533,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 .join-card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:8px;background:var(--gold)}
 .join-card>*:first-child{margin-top:0}
 .join-card>*:last-child{margin-bottom:0}
+.bottom .credit{display:inline-block;margin-left:14px;padding-left:14px;border-left:1px solid rgba(255,255,255,.25)}
+.bottom .credit a{color:#fff;text-decoration:underline;text-decoration-color:var(--gold);text-underline-offset:3px}
+.bottom .credit a:hover{color:var(--gold)}
+@media (max-width:600px){.bottom .credit{display:block;margin:8px 0 0;padding:0;border:0}}
