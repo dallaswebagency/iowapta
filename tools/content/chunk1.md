@@ -438,7 +438,7 @@ The below links include instructions and information on the criteria for establi
 
 # Officers and Committees
 
-**Duties of Officers**
+**[Duties of Officers](https://iowapta.org/duties-of-officers/)**
 
 The officers needed in every PTA unit include:
 

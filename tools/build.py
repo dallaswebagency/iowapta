@@ -147,6 +147,9 @@ def trail(slug):
         s = PARENT.get(s)
     return out
 
+SIDEBAR_EXTRA = {"programs-events": ["lifetime-achievement"]}
+LABEL.setdefault("lifetime-achievement", "Lifetime Achievement")
+
 CHEV = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>'
 ARROW = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>'
 
@@ -163,7 +166,8 @@ def a(slug, label, cls="", current=None):
 
 def header(current):
     sec = section_of(current) if current not in ("home",) else None
-    lis = []
+    home_cls = ' class="is-here"' if current == "home" else ""
+    lis = [f"<li{home_cls}>{a('home', 'Home', current=current)}</li>"]
     for slug, label, kids in MENU:
         here = ' class="is-here"' if slug == sec or slug == current else ""
         if not kids:
@@ -185,7 +189,7 @@ def header(current):
 <div class="util">
   <div class="wrap">
     <div class="group"><a href="tel:3199815210">319-981-5210</a><a href="mailto:info@iowapta.org">info@iowapta.org</a></div>
-    <div class="group">{a("ext:calendar", "Calendar")}{a("ipta-in-action", "IPTA In Action")}{a("ext:shoppta", "IPTA @ ShopPTA.com")}{a("ext:national-pta", "National PTA")}</div>
+    <div class="group">{a("home", "Home")}{a("ext:calendar", "Calendar")}{a("ipta-in-action", "IPTA In Action")}{a("ext:shoppta", "IPTA @ ShopPTA.com")}{a("ext:donate", "Donate")}{a("join-pta", "JOIN PTA!")}</div>
   </div>
 </div>
 
@@ -322,7 +326,7 @@ def side_nav(slug):
         return ""
     def items(parent):
         out = []
-        for s in CHILDREN.get(parent, []):
+        for s in CHILDREN.get(parent, []) + SIDEBAR_EXTRA.get(parent, []):
             cur = ' class="is-current"' if s == slug else ""
             sub = ""
             if CHILDREN.get(s):
